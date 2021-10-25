@@ -6,7 +6,7 @@ public class Menus {
 	Scanner scan = new Scanner(System.in);
 
 	public Integer menuLogin(Boolean isCliente) {
-		System.out.println("== MENU DO LOGIN ===");
+		System.out.println("==== MENU DO LOGIN ====");
 		System.out.println("[1] - Logar");
 		System.out.println("[2] - Cadastrar-se");
 		if (isCliente) {
@@ -18,7 +18,7 @@ public class Menus {
 	}
 
 	public Integer menuCliente(String nomeUsuario) {
-		System.out.println("== MENU DO USUÁRIO: " + nomeUsuario + "===");
+		System.out.println("==== MENU DO USUÁRIO: " + nomeUsuario + " ====");
 		System.out.println("[1] - Logar");
 		System.out.println("[2] - Cadastrar-se");
 		System.out.println("[0] - Sair do Sistema");
@@ -27,7 +27,7 @@ public class Menus {
 	}
 
 	public Integer menuEmpresa(String nomeFuncionario) {
-		System.out.println("== MENU DO FUNCIONARIO: " + nomeFuncionario + " ===");
+		System.out.println("==== MENU DO FUNCIONARIO: " + nomeFuncionario + " ====");
 		System.out.println("[1] - Logar");
 		System.out.println("[2] - Cadastrar-se");
 		System.out.println("[0] - Sair do Sistema");
