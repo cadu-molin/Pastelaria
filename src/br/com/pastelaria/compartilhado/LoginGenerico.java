@@ -13,7 +13,7 @@ public class LoginGenerico {
 		System.out.println("Olá, seja bem vindo a Pastelaria \r\n");
 		
 		do {
-			opcao = menulogin.menuLogin(true);
+			opcao = menulogin.menuLogin(isCliente);
 			
 			switch (opcao){
 				case 1:

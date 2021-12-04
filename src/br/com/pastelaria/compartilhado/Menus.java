@@ -6,6 +6,7 @@ public class Menus {
 	Scanner scan = new Scanner(System.in);
 
 	public Integer menuLogin(Boolean isCliente) {
+		System.out.println("=======================");
 		System.out.println("==== MENU DO LOGIN ====");
 		System.out.println("[1] - Logar");
 		System.out.println("[2] - Cadastrar-se");
@@ -13,7 +14,7 @@ public class Menus {
 			System.out.println("[3] - Entrar como Visitante");
 		}
 		System.out.println("[0] - Sair do Sistema");
-
+		System.out.println("=======================");
 		return scan.nextInt();
 	}
 
