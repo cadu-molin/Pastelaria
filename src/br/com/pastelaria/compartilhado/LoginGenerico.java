@@ -32,9 +32,7 @@ public class LoginGenerico {
 					break;
 				case 0:
 					return 0;
-					}
-					break;
-				default:
+			default:
 					System.out.println("Tecla inválida. Favor informar outra!\r\n");
 			}
 		} while (opcao > 3 || opcao < 0);
@@ -42,7 +40,7 @@ public class LoginGenerico {
 	}
 	
 	private Integer login() {
-		Integer volta = 0;
+		Integer contador = 0;
 		
 		do {
 			System.out.println("========= LOGIN =========");
@@ -52,15 +50,17 @@ public class LoginGenerico {
 			System.out.println("Digite sua senha: ");
 			senha = scan.next();
 			
-//			if (of_validar(usuario, senha)) {
+//			if (confereLogin(usuario, senha)) {
 //				
 //			}
 			
-			volta += 1;
-		} while (volta > 0);
-		
-
-
+			contador += 1;
+		} while (contador > 0);
 		return 1;
+	}
+	
+	private boolean confereLogin(Object usuario, Object senha) {
+		//String 
+		return true;
 	}
 }
