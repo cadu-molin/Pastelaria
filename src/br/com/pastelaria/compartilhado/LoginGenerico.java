@@ -31,7 +31,8 @@ public class LoginGenerico {
 					opcao = 3;
 					break;
 				case 0:
-					opcao = 0;
+					return 0;
+					}
 					break;
 				default:
 					System.out.println("Tecla inválida. Favor informar outra!\r\n");

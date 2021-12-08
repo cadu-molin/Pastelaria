@@ -3,15 +3,19 @@ package br.com.pastelaria.empresa;
 import java.sql.Connection;
 import br.com.pastelaria.compartilhado.*;
 
-public class PrincipalEmpresa {
-	Connection conexao;
+public class PrincipalEmpresa{
+	static Connection conexao;
 
 	public static void main(String[] args) {
-		Integer retorno;
-		LoginGenerico login = new LoginGenerico("Cliente");
-		// Menus menuLogin = new Menus();
-		retorno = login.logar();
+		conexao = Conexao.getConnection();
 
-		System.out.println("Retorno: " + retorno);
+		if (conexao == null) System.exit(1);
+
+		LoginGenerico login = new LoginGenerico("Empresa");
+		
+		if (login.logar() == 0) {
+			Conexao.closeConnection(conexao);
+			System.exit(0);
+		}
 	}
 }
