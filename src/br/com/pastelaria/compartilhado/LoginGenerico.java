@@ -1,6 +1,11 @@
 package br.com.pastelaria.compartilhado;
 
+import br.com.pastelaria.cliente.PrincipalCliente;
+import br.com.pastelaria.empresa.PrincipalEmpresa;
+
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginGenerico {
 	private String usuario, senha;
@@ -41,6 +46,13 @@ public class LoginGenerico {
 	
 	private Integer login() {
 		Integer contador = 0;
+		CRUD crud;
+		
+		if  (isCliente) {
+			crud = new CRUD(PrincipalCliente.conexao);
+		}else {
+			crud = new CRUD(PrincipalEmpresa.conexao);
+		}
 		
 		do {
 			System.out.println("========= LOGIN =========");
@@ -50,17 +62,22 @@ public class LoginGenerico {
 			System.out.println("Digite sua senha: ");
 			senha = scan.next();
 			
-//			if (confereLogin(usuario, senha)) {
-//				
-//			}
-			
-			contador += 1;
+			if (crud.validarLogin(this.parametroValidacao(usuario, senha)) == 1) {
+				System.out.println("\nParabens! Você deve ser muito esperto por lembrar sua própria senha.");
+				contador = 0;
+			} else {
+				System.out.println("Usuário ou senha inválida, tente novamente.");
+				contador += 1;
+			}
 		} while (contador > 0);
 		return 1;
 	}
 	
-	private boolean confereLogin(Object usuario, Object senha) {
-		//String 
-		return true;
+	private Map<String, String> parametroValidacao(String usuario, String senha) {
+		Map <String, String> atributo = new HashMap<String, String>();
+		
+		atributo.put("TABELA", "USUARIO");
+		atributo.put("CLAUSULA","NOMEUSUARIO = '" + usuario + "' AND SENHA = '" + senha + "' AND TIPOUSUARIO");
+		return atributo;
 	}
 }

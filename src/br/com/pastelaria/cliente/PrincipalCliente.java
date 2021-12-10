@@ -5,7 +5,7 @@ import br.com.pastelaria.compartilhado.*;
 
 
 public class PrincipalCliente {
-	static Connection conexao;
+	public static Connection conexao;
 
 	public static void main(String[] args) {
 		conexao = Conexao.getConnection();

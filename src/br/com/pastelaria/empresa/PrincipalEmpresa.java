@@ -4,7 +4,7 @@ import java.sql.Connection;
 import br.com.pastelaria.compartilhado.*;
 
 public class PrincipalEmpresa{
-	static Connection conexao;
+	public static Connection conexao;
 
 	public static void main(String[] args) {
 		conexao = Conexao.getConnection();
