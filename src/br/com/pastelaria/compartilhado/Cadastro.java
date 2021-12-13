@@ -21,58 +21,72 @@ public class Cadastro {
 	}
 
 	public Integer usuario() {
-		String nomeUsuario, tipousuario = (this.isCliente) ? "C" : "F";
-		Integer retorno;
+		String nomeUsuario, senha, email, ciade, bairro, rua, complemento, observacao,
+			   tipousuario = (this.isCliente) ? "C" : "U";
+		Integer idade, cpf, celular, numeroCasa, retorno;
 		Map<String, String> sql = new HashMap<String, String>();
 		Scanner scan = new Scanner(System.in);
 
 		sql.put("TABELA", "USUARIO");
-		sql.put("COLUNAS", "NOMEUSUARIO, SENHA, IDADE, CPF, CELULAR" + "EMAIL, CIDADE, BAIRRO, RUA, NUMEROCASA"
+		sql.put("COLUNAS", "NOMEUSUARIO, SENHA, IDADE, CPF, CELULAR, " + "EMAIL, CIDADE, BAIRRO, RUA, NUMEROCASA, "
 				+ "COMPLEMENTO, OBSERVACAO, TIPOUSUARIO");
 
 		System.out.println("=============================");
 		System.out.println("==== CADASTRO DE USUÁRIO ====\n");
 		System.out.println("Digite o nome de usuário:");
-		nomeUsuario = scan.next();
+		nomeUsuario = scan.nextLine();
 
 		do {
 			retorno = this.usuarioExiste(nomeUsuario);
 
 			if (retorno == 2) {
 				System.out.println("O nome de usuário informado já existe, por favor informe outro:");
-				nomeUsuario = scan.next();
+				nomeUsuario = scan.nextLine();
 			} else if (retorno == 1) {
-				sql.put("VALORES", "NOMEUSUARIO = '" + nomeUsuario + "'");
+				sql.put("VALORES", "'" + nomeUsuario + "', ");
 			} else {
 				return 0;
 			}
 
-		} while (retorno != 2);
+		} while (retorno == 2);
 
 		System.out.println("Digite a senha:");
-		sql.put("VALORES", sql.get("VALORES") + "SENHA = '" + scan.next() + "'");
+		senha = scan.nextLine();
 		System.out.println("Digite a idade:");
-		sql.put("VALORES", sql.get("VALORES") + "IDADE = '" + scan.nextInt() + "'");
+		idade = scan.nextInt();
 		System.out.println("Digite o CPF:");
-		sql.put("VALORES", sql.get("VALORES") + "CPF = '" + scan.nextInt() + "'");
+		cpf = scan.nextInt();
 		System.out.println("Digite o número do celular:");
-		sql.put("VALORES", sql.get("VALORES") + "CELULAR = '" + scan.nextInt() + "'");
+		celular = scan.nextInt();
+		scan.nextLine();
 		System.out.println("Digite o e-mail:");
-		sql.put("VALORES", sql.get("VALORES") + "EMAIL = '" + scan.next() + "'");
-		System.out.println("Digite o nome da ciade:");
-		sql.put("VALORES", sql.get("VALORES") + "CIDADE = '" + scan.next() + "'");
+		email = scan.nextLine();
+		System.out.println("Digite o nome da cidade:");
+		ciade = scan.nextLine();
 		System.out.println("Digite o nome do bairro:");
-		sql.put("VALORES", sql.get("VALORES") + "BAIRRO = '" + scan.next() + "'");
+		bairro = scan.nextLine();
 		System.out.println("Digite o nome da rua:");
-		sql.put("VALORES", sql.get("VALORES") + "RUA = '" + scan.next() + "'");
+		rua = scan.nextLine();
 		System.out.println("Digite o numero da casa:");
-		sql.put("VALORES", sql.get("VALORES") + "NUMEROCASA = '" + scan.nextInt() + "'");
+		numeroCasa = scan.nextInt();
+		scan.nextLine();
 		System.out.println("Digite um complemento:");
-		sql.put("VALORES", sql.get("VALORES") + "COMPLEMENTO = '" + scan.next() + "'");
+		complemento = scan.nextLine();
 		System.out.println("Digite uma observação:");
-		sql.put("VALORES", sql.get("VALORES") + "OBSERVACAO = '" + scan.next() + "'");
-
-		sql.put("VALORES", sql.get("VALORES") + "TIPOUSUARIO = '" + tipousuario + "'");
+		observacao = scan.nextLine();
+		
+		sql.put("VALORES", sql.get("VALORES") + "'" + senha + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "" + idade + ", ");
+		sql.put("VALORES", sql.get("VALORES") + "" + cpf + ", ");
+		sql.put("VALORES", sql.get("VALORES") + "" + celular + ", ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + email + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + ciade + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + bairro + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + rua + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "" + numeroCasa + ", ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + complemento + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + observacao + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "'" + tipousuario + "'");
 
 		if (crud.insert(sql) == 1) {
 			return 1;
@@ -88,7 +102,7 @@ public class Cadastro {
 		if (isCliente) {
 			tipousuario = "C";
 		} else {
-			tipousuario = "F' OR TIPOUSUARIO = 'A";
+			tipousuario = "U' OR TIPOUSUARIO = 'A";
 		}
 
 		atributo.put("TABELA", "USUARIO");

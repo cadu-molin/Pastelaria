@@ -31,10 +31,8 @@ public class CRUD {
 //	}
 
 	public Integer insert(Map<String, String> map) {
-		try (PreparedStatement stmt = this.con.prepareStatement("INSERT INTO ?(?) VALUES(?)")) {
-			stmt.setString(1, map.get("TABELA"));
-			stmt.setString(2, map.get("COLUNAS"));
-			stmt.setString(3, map.get("VALORES"));
+		String sql = String.format("INSERT INTO %s(%s) VALUES(%s)", map.get("TABELA"), map.get("COLUNAS"), map.get("VALORES"));
+		try (PreparedStatement stmt = this.con.prepareStatement(sql)) {
 			stmt.executeUpdate();
 			return 1;
 		} catch (SQLException ex) {

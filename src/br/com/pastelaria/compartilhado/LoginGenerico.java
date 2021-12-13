@@ -51,10 +51,10 @@ public class LoginGenerico {
 		do {
 			System.out.println("========= LOGIN =========");
 			System.out.println("Digite o nome do usuário: ");
-			usuario = scan.next();
+			usuario = scan.nextLine();
 
 			System.out.println("Digite sua senha: ");
-			senha = scan.next();
+			senha = scan.nextLine();
 
 			if (crud.validarLogin(this.parametroValidacao(usuario, senha)) == 2) {
 				System.out.println("Login efetuado com sucesso!");
@@ -83,7 +83,7 @@ public class LoginGenerico {
 		if (isCliente) {
 			tipousuario = "C";
 		} else {
-			tipousuario = "F' OR TIPOUSUARIO = 'A";
+			tipousuario = "U' OR TIPOUSUARIO = 'A";
 		}
 
 		atributo.put("TABELA", "USUARIO");
