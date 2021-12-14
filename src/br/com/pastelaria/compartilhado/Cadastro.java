@@ -22,7 +22,7 @@ public class Cadastro {
 
 	public Integer usuario() {
 		String nomeUsuario, senha, email, ciade, bairro, rua, complemento, observacao,
-			   tipousuario = (this.isCliente) ? "C" : "U";
+				tipousuario = (this.isCliente) ? "C" : "U";
 		Integer idade, cpf, celular, numeroCasa, retorno;
 		Map<String, String> sql = new HashMap<String, String>();
 		Scanner scan = new Scanner(System.in);
@@ -74,7 +74,7 @@ public class Cadastro {
 		complemento = scan.nextLine();
 		System.out.println("Digite uma observação:");
 		observacao = scan.nextLine();
-		
+
 		sql.put("VALORES", sql.get("VALORES") + "'" + senha + "', ");
 		sql.put("VALORES", sql.get("VALORES") + "" + idade + ", ");
 		sql.put("VALORES", sql.get("VALORES") + "" + cpf + ", ");
@@ -87,6 +87,38 @@ public class Cadastro {
 		sql.put("VALORES", sql.get("VALORES") + "'" + complemento + "', ");
 		sql.put("VALORES", sql.get("VALORES") + "'" + observacao + "', ");
 		sql.put("VALORES", sql.get("VALORES") + "'" + tipousuario + "'");
+
+		if (crud.insert(sql) == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
+	public Integer produto() {
+		String descricaoProduto, ingredientes, observacao;
+		Double valor;
+		Map<String, String> sql = new HashMap<String, String>();
+		Scanner scan = new Scanner(System.in);
+
+		sql.put("TABELA", "PRODUTO");
+		sql.put("COLUNAS", "DESCRICAOPRODUTO, INGREDIENTES, VALOR, OBSERVACAO");
+
+		System.out.println("=============================");
+		System.out.println("==== CADASTRO DE PRODUTO ====\n");
+		System.out.println("Digite o nome do produto:");
+		descricaoProduto = scan.nextLine();
+		System.out.println("Digite os ingredientes:");
+		ingredientes = scan.nextLine();
+		System.out.println("Digite o valor:");
+		valor = scan.nextDouble();
+		System.out.println("Digite um observação:");
+		observacao = scan.nextLine();
+
+		sql.put("VALORES", sql.get("VALORES") + "'" + descricaoProduto + "', ");
+		sql.put("VALORES", sql.get("VALORES") + "" + ingredientes + ", ");
+		sql.put("VALORES", sql.get("VALORES") + "" + valor + ", ");
+		sql.put("VALORES", sql.get("VALORES") + "" + observacao + ", ");
 
 		if (crud.insert(sql) == 1) {
 			return 1;
