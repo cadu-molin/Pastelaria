@@ -12,10 +12,10 @@ public class LoginGenerico {
 	private Integer opcao;
 
 	Scanner scan = new Scanner(System.in);
-	Menus menulogin = new Menus();
+	Menus menulogin = new Menus(isCliente);
 
 	public LoginGenerico(String classe) {
-		isCliente = classe.equalsIgnoreCase("CLIENTE");
+		this.isCliente = classe.equalsIgnoreCase("CLIENTE");
 	}
 
 	public Integer logar() {
@@ -66,6 +66,7 @@ public class LoginGenerico {
 				System.out.println("\n=======================================");
 				System.out.println("Deseja tentar novamente?\n[1] - Sim \n[0] - Não");
 				if (scan.nextInt() == 1) {
+					scan.nextLine();
 					menulogin.limparTela();
 					contador += 1;
 				} else {

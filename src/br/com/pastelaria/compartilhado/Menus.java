@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class Menus {
 	Scanner scan = new Scanner(System.in);
+	Boolean isCliente;
+	
+	public Menus(Boolean isCliente) {
+		this.isCliente = isCliente;
+	}
 
 	public Integer menuLogin() {
 
@@ -18,19 +23,22 @@ public class Menus {
 		return getInteger();
 	}
 
-	public Integer menuCliente(String nomeUsuario) {
-		System.out.println("==== MENU DO USUÁRIO: " + nomeUsuario + " ====");
-		System.out.println("[1] - Logar");
-		System.out.println("[2] - Cadastrar-se");
-		System.out.println("[0] - Sair do Sistema");
-
-		return getInteger();
-	}
-
-	public Integer menuEmpresa(String nomeFuncionario) {
-		System.out.println("==== MENU DO FUNCIONARIO: " + nomeFuncionario + " ====");
-		System.out.println("[1] - Logar");
-		System.out.println("[2] - Cadastrar-se");
+	public Integer menuPrincipal() {
+		this.limparTela();
+		
+		if (isCliente) {
+			System.out.println("==== MENU DO USUÁRIO ====");
+		} else {
+			System.out.println("==== MENU DO FUNCIONARIO ====");
+		}
+		
+		System.out.println("[1] - Produtos");
+		System.out.println("[2] - Pedidos");
+		
+		if (isCliente == false) {
+			System.out.println("[3] - Dados da empresa");
+		}
+		
 		System.out.println("[0] - Sair do Sistema");
 
 		return getInteger();
@@ -38,12 +46,13 @@ public class Menus {
 
 	private Integer getInteger() {
 		Integer opcao;
-		
+
 		try {
 			opcao = scan.nextInt();
-			
+			scan.nextLine();
+
 			this.limparTela();
-			
+
 			return opcao;
 		} catch (InputMismatchException ex) {
 			System.out.println("Por favor, informe apenas valores numéricos.");

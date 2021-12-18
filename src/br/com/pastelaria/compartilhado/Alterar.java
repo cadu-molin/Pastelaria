@@ -1,16 +1,17 @@
 package br.com.pastelaria.compartilhado;
 
-import br.com.pastelaria.cliente.PrincipalCliente;
-import br.com.pastelaria.empresa.PrincipalEmpresa;
-import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-public class Cadastro {
+import br.com.pastelaria.cliente.PrincipalCliente;
+import br.com.pastelaria.empresa.PrincipalEmpresa;
+
+public class Alterar {
 	Boolean isCliente;
 	CRUD crud;
 
-	public Cadastro(Boolean isClinete) {
+	public Alterar(Boolean isClinete) {
 		this.isCliente = isClinete;
 
 		if (isCliente) {
@@ -89,7 +90,7 @@ public class Cadastro {
 		sql.put("VALORES", sql.get("VALORES") + "'" + observacao + "', ");
 		sql.put("VALORES", sql.get("VALORES") + "'" + tipousuario + "'");
 
-		if (crud.insert(sql) == 1) {
+		if (crud.update(sql) == 1) {
 			return 1;
 		} else {
 			return 0;
@@ -122,7 +123,7 @@ public class Cadastro {
 		sql.put("VALORES", sql.get("VALORES") + "" + valor + ", ");
 		sql.put("VALORES", sql.get("VALORES") + "" + observacao + ", ");
 
-		if (crud.insert(sql) == 1) {
+		if (crud.update(sql) == 1) {
 			return 1;
 		} else {
 			return 0;
@@ -152,7 +153,7 @@ public class Cadastro {
 		sql.put("VALORES", sql.get("VALORES") + "'" + nomeFantasiaEmpresa + "', ");
 		sql.put("VALORES", sql.get("VALORES") + "" + cnpj + ", ");
 
-		if (crud.insert(sql) == 1) {
+		if (crud.update(sql) == 1) {
 			return 1;
 		} else {
 			return 0;
